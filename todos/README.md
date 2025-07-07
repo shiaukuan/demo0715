@@ -1,105 +1,187 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# Todo 應用程式
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+一個基於 Next.js 和 Supabase 構建的現代化待辦事項管理應用程式。
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+## 功能特色
 
-## Features
+- 🔐 使用者認證與授權
+- ✅ 待辦事項 CRUD 操作
+- 🎨 現代化 UI 設計 (shadcn/ui + Tailwind CSS)
+- 🌙 暗黑模式支援
+- 📱 響應式設計
+- 🔄 實時資料同步
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Password-based authentication block installed via the [Supabase UI Library](https://supabase.com/ui/docs/nextjs/password-based-auth)
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Components with [shadcn/ui](https://ui.shadcn.com/)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+## 技術棧
 
-## Demo
+### 前端
+- **Next.js 15** - React 全棧框架
+- **React 19** - 使用者界面程式庫
+- **TypeScript** - 型別安全
+- **Tailwind CSS** - 樣式框架
+- **shadcn/ui** - UI 元件程式庫
+- **Radix UI** - 無樣式 UI 元件
+- **Lucide React** - 圖示程式庫
+- **next-themes** - 主題切換
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+### 後端
+- **Supabase** - 後端即服務 (BaaS)
+- **Supabase Auth** - 使用者認證
+- **Supabase Database** - PostgreSQL 資料庫
+- **Supabase SSR** - 伺服器端渲染支援
 
-## Deploy to Vercel
+## 專案結構
 
-Vercel deployment will guide you through creating a Supabase account and project.
+```
+todos/
+├── app/                          # Next.js App Router
+│   ├── auth/                     # 認證相關頁面
+│   │   ├── login/               # 登入頁面
+│   │   ├── sign-up/             # 註冊頁面
+│   │   ├── forgot-password/     # 忘記密碼頁面
+│   │   ├── update-password/     # 更新密碼頁面
+│   │   └── confirm/             # 確認頁面
+│   ├── protected/               # 受保護的頁面
+│   ├── globals.css              # 全域樣式
+│   ├── layout.tsx               # 根布局
+│   └── page.tsx                 # 首頁
+├── components/                   # React 元件
+│   ├── ui/                      # 基礎 UI 元件
+│   ├── tutorial/                # 教學元件
+│   ├── auth-button.tsx          # 認證按鈕
+│   ├── login-form.tsx           # 登入表單
+│   ├── sign-up-form.tsx         # 註冊表單
+│   └── theme-switcher.tsx       # 主題切換器
+├── lib/                         # 工具程式庫
+│   ├── supabase/               # Supabase 設定
+│   │   ├── client.ts           # 客戶端配置
+│   │   ├── server.ts           # 伺服器端配置
+│   │   └── middleware.ts       # 中介軟體配置
+│   └── utils.ts                # 工具函數
+├── middleware.ts               # Next.js 中介軟體
+├── components.json             # shadcn/ui 配置
+├── tailwind.config.ts          # Tailwind CSS 配置
+├── tsconfig.json               # TypeScript 配置
+├── next.config.ts              # Next.js 配置
+└── package.json                # 專案依賴
+```
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+## 開始使用
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This+starter+configures+Supabase+Auth+to+use+cookies%2C+making+the+user%27s+session+available+throughout+the+entire+Next.js+app+-+Client+Components%2C+Server+Components%2C+Route+Handlers%2C+Server+Actions+and+Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png)
+### 前置需求
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+- Node.js 18.0 或更高版本
+- npm、yarn 或 pnpm
+- Supabase 帳戶
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+### 安裝步驟
 
-## Clone and run locally
-
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
-
-2. Create a Next.js app using the Supabase Starter template npx command
-
+1. **複製專案**
    ```bash
-   npx create-next-app --example with-supabase with-supabase-app
+   git clone <repository-url>
+   cd todos
    ```
 
+2. **安裝依賴**
    ```bash
-   yarn create next-app --example with-supabase with-supabase-app
+   npm install
+   # 或
+   yarn install
+   # 或
+   pnpm install
    ```
 
-   ```bash
-   pnpm create next-app --example with-supabase with-supabase-app
+3. **設定環境變數**
+   
+   建立 `.env.local` 檔案並新增以下內容：
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-3. Use `cd` to change into the app's directory
+   您可以在 [Supabase 專案設定](https://app.supabase.com/project/_/settings/api) 中找到這些值。
 
-   ```bash
-   cd with-supabase-app
-   ```
-
-4. Rename `.env.example` to `.env.local` and update the following:
-
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
-
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://supabase.com/dashboard/project/_?showConnect=true)
-
-5. You can now run the Next.js local development server:
-
+4. **啟動開發伺服器**
    ```bash
    npm run dev
+   # 或
+   yarn dev
+   # 或
+   pnpm dev
    ```
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+5. **開啟瀏覽器**
+   
+   前往 [http://localhost:3000](http://localhost:3000) 查看應用程式。
 
-6. This template comes with the default shadcn/ui style initialized. If you instead want other ui.shadcn styles, delete `components.json` and [re-install shadcn/ui](https://ui.shadcn.com/docs/installation/next)
+## 可用指令
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+- `npm run dev` - 啟動開發伺服器
+- `npm run build` - 建置生產版本
+- `npm run start` - 啟動生產伺服器
+- `npm run lint` - 執行 ESLint 檢查
 
-## Feedback and issues
+## 認證流程
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+應用程式包含完整的認證系統：
 
-## More Supabase examples
+1. **註冊** - 使用者可以建立新帳戶
+2. **登入** - 使用者可以使用帳戶登入
+3. **忘記密碼** - 密碼重設功能
+4. **受保護頁面** - 需要認證才能訪問的頁面
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+## 部署
+
+### Vercel 部署
+
+1. 將專案推送到 GitHub
+2. 前往 [Vercel Dashboard](https://vercel.com/dashboard)
+3. 匯入您的 GitHub 倉庫
+4. 設定環境變數
+5. 部署
+
+### 其他平台
+
+此應用程式可以部署到任何支援 Next.js 的平台，包括：
+- Netlify
+- Railway
+- Render
+- Digital Ocean App Platform
+
+## 自訂化
+
+### 主題
+
+應用程式使用 next-themes 支援明暗主題切換。您可以在 `app/globals.css` 中自訂主題顏色。
+
+### UI 元件
+
+使用 shadcn/ui 元件程式庫。要新增新元件：
+
+```bash
+npx shadcn-ui@latest add [component-name]
+```
+
+### 資料庫架構
+
+在 Supabase 中設定您的資料庫表格。參考 `lib/supabase/` 目錄中的配置檔案。
+
+## 授權
+
+此專案採用 MIT 授權條款。
+
+## 支援
+
+如有問題或需要協助，請：
+1. 查看 [Next.js 文件](https://nextjs.org/docs)
+2. 查看 [Supabase 文件](https://supabase.com/docs)
+3. 建立 Issue 在此倉庫中
+
+## 貢獻
+
+歡迎貢獻！請先閱讀貢獻指南。
+
+1. Fork 此倉庫
+2. 建立功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交您的更改 (`git commit -m 'Add some amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 開啟 Pull Request
