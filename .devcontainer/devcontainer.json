@@ -41,7 +41,9 @@
   "remoteEnv": {
     "NODE_OPTIONS": "--max-old-space-size=4096",
     "CLAUDE_CONFIG_DIR": "/home/node/.claude",
-    "POWERLEVEL9K_DISABLE_GITSTATUS": "true",
+    "POWERLEVEL9K_DISABLE_GITSTATUS": "true"
+  },
+  "containerEnv": {
     "http_proxy": "http://proxy.cht.com.tw:8080",
     "https_proxy": "http://proxy.cht.com.tw:8080",
     "no_proxy": "127.0.0.1",
@@ -51,6 +53,6 @@
     "GIT_COMMITTER_EMAIL": "kuan9924501@gmail.com"
   },
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
-  "workspaceFolder": "/workspace",
-  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
+  "workspaceFolder": "/workspace"
+  // "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh"
 }
