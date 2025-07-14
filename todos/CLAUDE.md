@@ -91,3 +91,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 - Use the server client for database operations in server components
 - Handle authentication state properly with user checks
 - Implement proper error handling for database operations
+
+## Language Notes
+- Always strive to be able to 用繁體中文回答 (respond in Traditional Chinese) when requested

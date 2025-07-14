@@ -5,25 +5,46 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ImageUpload } from "@/components/image-upload";
 import { Plus, Loader2 } from "lucide-react";
 
 interface TodoFormProps {
-  onSubmit: (title: string, description?: string) => Promise<void>;
+  onSubmit: (title: string, description?: string, imageFile?: File) => Promise<void>;
   isLoading?: boolean;
 }
 
 export function TodoForm({ onSubmit, isLoading = false }: TodoFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>("");
+
+  const handleImageSelect = (file: File) => {
+    setSelectedImage(file);
+    // Create preview URL
+    const previewUrl = URL.createObjectURL(file);
+    setImagePreview(previewUrl);
+  };
+
+  const handleImageRemove = () => {
+    setSelectedImage(null);
+    if (imagePreview) {
+      URL.revokeObjectURL(imagePreview);
+      setImagePreview("");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!title.trim()) return;
     
-    await onSubmit(title.trim(), description.trim() || undefined);
+    await onSubmit(title.trim(), description.trim() || undefined, selectedImage || undefined);
+    
+    // Clear form
     setTitle("");
     setDescription("");
+    handleImageRemove();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -70,6 +91,14 @@ export function TodoForm({ onSubmit, isLoading = false }: TodoFormProps) {
               disabled={isLoading}
             />
           </div>
+
+          <ImageUpload
+            onImageSelect={handleImageSelect}
+            onImageRemove={handleImageRemove}
+            preview={imagePreview}
+            isUploading={isLoading}
+            disabled={isLoading}
+          />
           
           <Button 
             type="submit" 

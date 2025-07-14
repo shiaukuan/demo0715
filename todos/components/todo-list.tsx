@@ -15,11 +15,13 @@ interface TodoListProps {
   onToggle: (id: string, completed: boolean) => void;
   onUpdate: (id: string, title: string, description?: string) => void;
   onDelete: (id: string) => void;
+  onImageUpdate?: (id: string, imageFile: File) => void;
+  onImageRemove?: (id: string) => void;
 }
 
 type FilterType = 'all' | 'active' | 'completed';
 
-export function TodoList({ todos, onToggle, onUpdate, onDelete }: TodoListProps) {
+export function TodoList({ todos, onToggle, onUpdate, onDelete, onImageUpdate, onImageRemove }: TodoListProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState<FilterType>('all');
 
@@ -160,6 +162,8 @@ export function TodoList({ todos, onToggle, onUpdate, onDelete }: TodoListProps)
                 onToggle={onToggle}
                 onUpdate={onUpdate}
                 onDelete={onDelete}
+                onImageUpdate={onImageUpdate}
+                onImageRemove={onImageRemove}
               />
             ))
           )}
