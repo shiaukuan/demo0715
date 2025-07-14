@@ -1,10 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ImageUpload } from "@/components/image-upload";
 import { Plus, Loader2 } from "lucide-react";
 
@@ -55,70 +51,77 @@ export function TodoForm({ onSubmit, isLoading = false }: TodoFormProps) {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Plus className="h-5 w-5" />
-          Add New Todo
-        </CardTitle>
-        <CardDescription>
-          Create a new todo item to track your tasks
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
-            <Input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Enter todo title..."
-              disabled={isLoading}
-              required
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="description">Description (optional)</Label>
-            <Input
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Enter description..."
-              disabled={isLoading}
-            />
-          </div>
-
-          <ImageUpload
-            onImageSelect={handleImageSelect}
-            onImageRemove={handleImageRemove}
-            preview={imagePreview}
-            isUploading={isLoading}
+    <div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="flex gap-4">
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="WHAT NEEDS TO BE DONE?"
             disabled={isLoading}
+            required
+            className="flex-1 p-4 border-3 border-black bg-white text-black font-bold text-lg uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-red-200"
+            style={{
+              fontFamily: "'Rye', cursive",
+              borderRadius: 0,
+              boxShadow: 'inset 3px 3px 0px rgba(0,0,0,0.1)',
+            }}
           />
           
-          <Button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={!title.trim() || isLoading}
-            className="w-full"
+            className="px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white border-3 border-black font-bold text-lg uppercase tracking-wide cursor-pointer transform transition-all duration-200 hover:from-red-800 hover:to-red-600 hover:-translate-y-1 active:translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{
+              fontFamily: "'Barrio', cursive",
+              borderRadius: 0,
+              boxShadow: '3px 3px 0px #000000, 6px 6px 0px rgba(0,0,0,0.3)',
+              transform: 'rotate(-0.5deg)',
+            }}
           >
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Adding...
+                ADDING...
               </>
             ) : (
               <>
                 <Plus className="mr-2 h-4 w-4" />
-                Add Todo
+                ADD IT!
               </>
             )}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+          </button>
+        </div>
+        
+        <div className="space-y-2">
+          <input
+            id="description"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Add some details... (optional)"
+            disabled={isLoading}
+            className="w-full p-3 border-2 border-black bg-white text-black font-bold uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200"
+            style={{
+              fontFamily: "'Rye', cursive",
+              borderRadius: 0,
+              boxShadow: 'inset 2px 2px 0px rgba(0,0,0,0.1)',
+            }}
+          />
+        </div>
+
+        <ImageUpload
+          onImageSelect={handleImageSelect}
+          onImageRemove={handleImageRemove}
+          preview={imagePreview}
+          isUploading={isLoading}
+          disabled={isLoading}
+        />
+      </form>
+    </div>
   );
 }

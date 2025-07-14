@@ -2,12 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { TodoItem } from "./todo-item";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Search, Filter, CheckCircle, Circle, List } from "lucide-react";
+import { Search } from "lucide-react";
 import { Todo } from "@/lib/database.types";
 
 interface TodoListProps {
@@ -61,103 +56,113 @@ export function TodoList({ todos, onToggle, onUpdate, onDelete, onImageUpdate, o
     return { total, completed, active };
   }, [todos]);
 
-  const getFilterIcon = (filterType: FilterType) => {
-    switch (filterType) {
-      case 'all': return <List className="h-4 w-4" />;
-      case 'active': return <Circle className="h-4 w-4" />;
-      case 'completed': return <CheckCircle className="h-4 w-4" />;
-    }
-  };
-
-  const getFilterLabel = (filterType: FilterType) => {
-    switch (filterType) {
-      case 'all': return 'All';
-      case 'active': return 'Active';
-      case 'completed': return 'Completed';
-    }
-  };
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="flex items-center gap-2">
-              <List className="h-5 w-5" />
-              Your Todos
-            </CardTitle>
-            <CardDescription>
-              Manage your tasks and track your progress
-            </CardDescription>
-          </div>
-          <div className="flex items-center gap-2">
-            <Badge variant="secondary">
-              {stats.total} total
-            </Badge>
-            <Badge variant="outline">
-              {stats.active} active
-            </Badge>
-            <Badge variant="default">
-              {stats.completed} completed
-            </Badge>
-          </div>
+    <div className="space-y-6">
+      {/* Stats Display */}
+      <div className="flex justify-center gap-4 mb-6">
+        <div className="bg-black text-white px-4 py-2 border-2 border-white transform rotate-1 font-bold uppercase tracking-wide" style={{fontFamily: "'Barrio', cursive", boxShadow: '3px 3px 0px #C41E3A'}}>
+          TOTAL: {stats.total}
         </div>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        {/* Search and Filter Controls */}
-        <div className="flex gap-2">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search todos..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <Filter className="h-4 w-4" />
-                {getFilterIcon(filter)}
-                {getFilterLabel(filter)}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => setFilter('all')}>
-                <List className="mr-2 h-4 w-4" />
-                All ({stats.total})
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter('active')}>
-                <Circle className="mr-2 h-4 w-4" />
-                Active ({stats.active})
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setFilter('completed')}>
-                <CheckCircle className="mr-2 h-4 w-4" />
-                Completed ({stats.completed})
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="bg-red-600 text-white px-4 py-2 border-2 border-white transform -rotate-1 font-bold uppercase tracking-wide" style={{fontFamily: "'Barrio', cursive", boxShadow: '3px 3px 0px #000'}}>
+          ACTIVE: {stats.active}
         </div>
+        <div className="bg-green-600 text-white px-4 py-2 border-2 border-white transform rotate-1 font-bold uppercase tracking-wide" style={{fontFamily: "'Barrio', cursive", boxShadow: '3px 3px 0px #000'}}>
+          DONE: {stats.completed}
+        </div>
+      </div>
 
-        {/* Todo List */}
-        <div className="space-y-2">
-          {filteredTodos.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
+      {/* Search and Filter Controls */}
+      <div className="flex gap-4 mb-6">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-black" />
+          <input
+            type="text"
+            placeholder="SEARCH YOUR TODOS..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 border-3 border-black bg-white text-black font-bold uppercase tracking-wide placeholder-gray-500 focus:outline-none focus:border-red-600 focus:ring-4 focus:ring-red-200"
+            style={{
+              fontFamily: "'Rye', cursive",
+              borderRadius: 0,
+              boxShadow: 'inset 2px 2px 0px rgba(0,0,0,0.1)',
+            }}
+          />
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-3 border-3 border-black font-bold uppercase tracking-wide transition-all duration-200 ${
+              filter === 'all' 
+                ? 'bg-black text-white' 
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+            style={{
+              fontFamily: "'Barrio', cursive",
+              borderRadius: 0,
+              boxShadow: '2px 2px 0px #C41E3A',
+            }}
+          >
+            ALL
+          </button>
+          <button
+            onClick={() => setFilter('active')}
+            className={`px-4 py-3 border-3 border-black font-bold uppercase tracking-wide transition-all duration-200 ${
+              filter === 'active' 
+                ? 'bg-black text-white' 
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+            style={{
+              fontFamily: "'Barrio', cursive",
+              borderRadius: 0,
+              boxShadow: '2px 2px 0px #C41E3A',
+            }}
+          >
+            ACTIVE
+          </button>
+          <button
+            onClick={() => setFilter('completed')}
+            className={`px-4 py-3 border-3 border-black font-bold uppercase tracking-wide transition-all duration-200 ${
+              filter === 'completed' 
+                ? 'bg-black text-white' 
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+            style={{
+              fontFamily: "'Barrio', cursive",
+              borderRadius: 0,
+              boxShadow: '2px 2px 0px #C41E3A',
+            }}
+          >
+            DONE
+          </button>
+        </div>
+      </div>
+
+      {/* Todo List */}
+      <div className="space-y-4">
+        {filteredTodos.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="bg-black text-white px-8 py-6 border-4 border-white transform rotate-1 inline-block font-bold uppercase tracking-wide text-xl" style={{fontFamily: "'Nosifer', cursive", boxShadow: '5px 5px 0px #C41E3A'}}>
               {searchTerm ? (
-                <p>No todos found matching &quot;{searchTerm}&quot;</p>
+                `NO TODOS FOUND FOR "${searchTerm.toUpperCase()}"`
               ) : filter === 'active' ? (
-                <p>No active todos. Great job!</p>
+                'NO ACTIVE TODOS. GREAT JOB!'
               ) : filter === 'completed' ? (
-                <p>No completed todos yet.</p>
+                'NO COMPLETED TODOS YET.'
               ) : (
-                <p>No todos yet. Create your first todo above!</p>
+                'NO TODOS YET. CREATE YOUR FIRST ONE!'
               )}
             </div>
-          ) : (
-            filteredTodos.map((todo) => (
+          </div>
+        ) : (
+          filteredTodos.map((todo, index) => (
+            <div
+              key={todo.id}
+              className={`transform transition-all duration-300 ${
+                index % 2 === 0 ? 'rotate-0.5' : '-rotate-0.5'
+              }`}
+            >
               <TodoItem
-                key={todo.id}
                 todo={todo}
                 onToggle={onToggle}
                 onUpdate={onUpdate}
@@ -165,10 +170,10 @@ export function TodoList({ todos, onToggle, onUpdate, onDelete, onImageUpdate, o
                 onImageUpdate={onImageUpdate}
                 onImageRemove={onImageRemove}
               />
-            ))
-          )}
-        </div>
-      </CardContent>
-    </Card>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
   );
 }

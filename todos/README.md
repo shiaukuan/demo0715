@@ -1,17 +1,30 @@
-# Todo 應用程式
+# PUNK TODO 應用程式 🎸
 
-一個基於 Next.js 和 Supabase 構建的現代化待辦事項管理應用程式。
+一個基於 Next.js 和 Supabase 構建的朋克風格待辦事項管理應用程式。
+
+## 🎨 設計風格
+
+這個應用程式採用了獨特的朋克/復古風格設計，靈感來自街頭文化和朋克音樂場景：
+
+- **配色方案**: 使用大膽的紅色漸層背景配合高對比度的黑白色調
+- **字體設計**: 使用 Google Fonts 的朋克風格字體（Barrio、Nosifer、Rye）
+- **視覺效果**: 
+  - 無圓角的方形設計
+  - 粗黑邊框 (3-4px)
+  - 立體陰影效果
+  - 輕微的旋轉效果
+  - 飛濺裝飾元素
+- **交互體驗**: 按鈕懸停上移、點擊下壓等動畫效果
 
 ## 功能特色
 
 - 🔐 使用者認證與授權
 - ✅ 待辦事項 CRUD 操作
-- 📸 **圖片上傳功能** - 為每個待辦事項添加圖片
-- 🎨 現代化 UI 設計 (shadcn/ui + Tailwind CSS)
-- 🌙 暗黑模式支援
+- 🎨 獨特的朋克風格 UI 設計
+- 📷 圖片上傳功能
+- 🔍 搜索和篩選功能
 - 📱 響應式設計
 - 🔄 實時資料同步
-- 🔍 搜尋與篩選功能
 
 ## 技術棧
 
@@ -44,6 +57,12 @@ todos/
 │   │   ├── update-password/     # 更新密碼頁面
 │   │   └── confirm/             # 確認頁面
 │   ├── protected/               # 受保護的頁面
+│   │   ├── fonts.css           # 朋克風格字體配置
+│   │   ├── grunge-styles.module.css  # 朋克風格樣式模組
+│   │   ├── layout.tsx          # 朋克風格布局
+│   │   └── page.tsx            # 主要 Todo 頁面
+│   ├── actions/                 # Server Actions
+│   │   └── todos.ts            # Todo 相關的 Server Actions
 │   ├── globals.css              # 全域樣式
 │   ├── layout.tsx               # 根布局
 │   └── page.tsx                 # 首頁
@@ -54,21 +73,21 @@ todos/
 │   ├── login-form.tsx           # 登入表單
 │   ├── sign-up-form.tsx         # 註冊表單
 │   ├── theme-switcher.tsx       # 主題切換器
-│   ├── todo-app.tsx             # 主要待辦事項應用程式
-│   ├── todo-form.tsx            # 新增待辦事項表單
-│   ├── todo-item.tsx            # 待辦事項元件
-│   ├── todo-list.tsx            # 待辦事項清單
-│   ├── image-upload.tsx         # 圖片上傳元件
-│   └── image-display.tsx        # 圖片顯示元件
+│   ├── todo-app.tsx             # 主要 Todo 應用程式組件
+│   ├── todo-form.tsx            # 朋克風格 Todo 表單
+│   ├── todo-item.tsx            # 朋克風格 Todo 項目
+│   ├── todo-list.tsx            # 朋克風格 Todo 列表
+│   ├── image-upload.tsx         # 圖片上傳組件
+│   └── image-display.tsx        # 圖片顯示組件
 ├── lib/                         # 工具程式庫
 │   ├── supabase/               # Supabase 設定
 │   │   ├── client.ts           # 客戶端配置
 │   │   ├── server.ts           # 伺服器端配置
 │   │   └── middleware.ts       # 中介軟體配置
-│   ├── storage.ts              # 伺服器端存儲操作
-│   ├── storage-client.ts       # 客戶端存儲操作
+│   ├── database.types.ts        # 資料庫類型定義
+│   ├── storage.ts              # 儲存功能
+│   ├── storage-client.ts       # 儲存客戶端
 │   ├── image-utils.ts          # 圖片處理工具
-│   ├── database.types.ts       # 資料庫類型定義
 │   └── utils.ts                # 工具函數
 ├── middleware.ts               # Next.js 中介軟體
 ├── components.json             # shadcn/ui 配置
@@ -185,13 +204,27 @@ todos/
 
 ## 自訂化
 
-### 主題
+### 朋克風格主題
 
-應用程式使用 next-themes 支援明暗主題切換。您可以在 `app/globals.css` 中自訂主題顏色。
+應用程式採用獨特的朋克風格設計，具有以下特色：
+
+- **自定義 CSS 模組**: `app/protected/grunge-styles.module.css` 包含所有朋克風格樣式
+- **字體配置**: `app/protected/fonts.css` 定義了朋克風格字體
+- **顏色配置**: 
+  - 主背景: 紅色漸層 (#C41E3A 到 #FF4444)
+  - 組件背景: 黑色漸層 (#000 到 #1a1a1a)
+  - 邊框: 粗黑邊框 (3-4px)
+  - 陰影: 立體陰影效果
 
 ### UI 元件
 
-使用 shadcn/ui 元件程式庫。要新增新元件：
+雖然項目使用了 shadcn/ui 作為基礎，但大部分組件都被重新設計為朋克風格：
+
+- **TodoForm**: 使用原生 HTML 元素搭配朋克風格樣式
+- **TodoItem**: 黑色背景、彩色按鈕、立體效果
+- **TodoList**: 統計標籤和搜索功能的朋克風格重新設計
+
+要新增新的 shadcn/ui 元件：
 
 ```bash
 npx shadcn@latest add [component-name]

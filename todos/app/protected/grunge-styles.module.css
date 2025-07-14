@@ -1,0 +1,342 @@
+/* 朋克風格樣式 */
+.punkContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #C41E3A 0%, #8B1538 50%, #FF4444 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.punkContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(0,0,0,0.3) 2px, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgba(0,0,0,0.2) 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size: 50px 50px, 30px 30px, 20px 20px;
+  pointer-events: none;
+}
+
+.welcomeMessage {
+  background: linear-gradient(45deg, #000000 0%, #1a1a1a 100%);
+  color: #ffffff;
+  padding: 15px 25px;
+  margin: 20px;
+  border: 3px solid #fff;
+  border-radius: 0;
+  transform: rotate(-1deg);
+  box-shadow: 
+    5px 5px 0px #000000,
+    10px 10px 0px rgba(0,0,0,0.3);
+  font-family: 'Barrio', cursive;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.welcomeMessage::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #fff, #ddd);
+  z-index: -1;
+  transform: rotate(2deg);
+}
+
+.todoContainer {
+  background: rgba(255, 255, 255, 0.95);
+  border: 4px solid #000;
+  border-radius: 0;
+  padding: 30px;
+  margin: 20px;
+  transform: rotate(0.5deg);
+  box-shadow: 
+    -8px 8px 0px #000000,
+    -16px 16px 0px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.todoContainer::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #000, #333);
+  z-index: -1;
+  transform: rotate(-1deg);
+}
+
+.todoContainer::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #C41E3A 40%, transparent 40%);
+  background-size: 10px 10px;
+}
+
+.todoTitle {
+  font-family: 'Nosifer', cursive;
+  font-size: 3rem;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 4px;
+  text-shadow: 
+    3px 3px 0px #C41E3A,
+    6px 6px 0px rgba(0,0,0,0.3);
+  transform: rotate(-1deg);
+}
+
+.todoForm {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  transform: rotate(0.3deg);
+}
+
+.todoInput {
+  flex: 1;
+  padding: 15px 20px;
+  border: 3px solid #000;
+  border-radius: 0;
+  font-family: 'Rye', cursive;
+  font-size: 16px;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  box-shadow: inset 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+.todoInput:focus {
+  outline: none;
+  border-color: #C41E3A;
+  box-shadow: 
+    inset 3px 3px 0px rgba(196, 30, 58, 0.2),
+    0 0 0 3px rgba(196, 30, 58, 0.3);
+}
+
+.addButton {
+  padding: 15px 30px;
+  background: linear-gradient(45deg, #C41E3A 0%, #8B1538 100%);
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 0;
+  font-family: 'Barrio', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transform: rotate(-0.5deg);
+  transition: all 0.2s ease;
+  box-shadow: 
+    3px 3px 0px #000000,
+    6px 6px 0px rgba(0,0,0,0.3);
+}
+
+.addButton:hover {
+  background: linear-gradient(45deg, #8B1538 0%, #C41E3A 100%);
+  transform: rotate(-0.5deg) translateY(-2px);
+  box-shadow: 
+    5px 5px 0px #000000,
+    10px 10px 0px rgba(0,0,0,0.3);
+}
+
+.addButton:active {
+  transform: rotate(-0.5deg) translateY(2px);
+  box-shadow: 
+    1px 1px 0px #000000,
+    2px 2px 0px rgba(0,0,0,0.3);
+}
+
+.todoList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todoItem {
+  background: linear-gradient(45deg, #000 0%, #1a1a1a 100%);
+  color: #fff;
+  padding: 20px;
+  margin: 15px 0;
+  border: 3px solid #fff;
+  border-radius: 0;
+  font-family: 'Rye', cursive;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: rotate(0.2deg);
+  box-shadow: 
+    4px 4px 0px #C41E3A,
+    8px 8px 0px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.todoItem:nth-child(odd) {
+  transform: rotate(-0.3deg);
+}
+
+.todoItem:nth-child(even) {
+  transform: rotate(0.4deg);
+}
+
+.todoItem::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #C41E3A, #8B1538);
+  z-index: -1;
+}
+
+.todoItem.completed {
+  background: linear-gradient(45deg, #666 0%, #999 100%);
+  text-decoration: line-through;
+  opacity: 0.7;
+  transform: rotate(0.1deg) scale(0.95);
+}
+
+.todoItem.completed::before {
+  background: linear-gradient(45deg, #666, #999);
+}
+
+.todoText {
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.todoActions {
+  display: flex;
+  gap: 10px;
+}
+
+.actionButton {
+  padding: 8px 16px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  font-family: 'Barrio', cursive;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #fff;
+}
+
+.completeButton {
+  background: linear-gradient(45deg, #4CAF50 0%, #45a049 100%);
+  color: #fff;
+}
+
+.completeButton:hover {
+  background: linear-gradient(45deg, #45a049 0%, #4CAF50 100%);
+  transform: translateY(-1px);
+}
+
+.deleteButton {
+  background: linear-gradient(45deg, #f44336 0%, #d32f2f 100%);
+  color: #fff;
+}
+
+.deleteButton:hover {
+  background: linear-gradient(45deg, #d32f2f 0%, #f44336 100%);
+  transform: translateY(-1px);
+}
+
+/* 飛濺效果 */
+.splatter {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #C41E3A;
+  border-radius: 50%;
+}
+
+.splatter::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 5px;
+  height: 5px;
+  background: #8B1538;
+  border-radius: 50%;
+  transform: rotate(45deg);
+}
+
+.splatter::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: -3px;
+  width: 3px;
+  height: 3px;
+  background: #FF4444;
+  border-radius: 50%;
+}
+
+/* 動畫效果 */
+@keyframes punk-pulse {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.05) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.punk-pulse {
+  animation: punk-pulse 2s ease-in-out infinite;
+}
+
+@keyframes grunge-shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px) rotate(-0.5deg); }
+  50% { transform: translateX(2px) rotate(0.5deg); }
+  75% { transform: translateX(-1px) rotate(-0.2deg); }
+  100% { transform: translateX(0); }
+}
+
+.grunge-shake {
+  animation: grunge-shake 3s ease-in-out infinite;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .todoTitle {
+    font-size: 2rem;
+  }
+  
+  .todoForm {
+    flex-direction: column;
+  }
+  
+  .todoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .todoActions {
+    align-self: flex-end;
+  }
+}

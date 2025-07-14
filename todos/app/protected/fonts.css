@@ -1,0 +1,23 @@
+/* 朋克風格字體 */
+@import url('https://fonts.googleapis.com/css2?family=Barrio&family=Creepster&family=Nosifer&family=Rye&display=swap');
+
+/* 自訂字體樣式 */
+@font-face {
+  font-family: 'Punk';
+  src: url('data:font/woff2;base64,') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 替代字體 */
+.punk-font {
+  font-family: 'Barrio', 'Creepster', 'Nosifer', 'Rye', cursive, sans-serif;
+}
+
+.grunge-font {
+  font-family: 'Nosifer', 'Creepster', monospace;
+}
+
+.stencil-font {
+  font-family: 'Rye', 'Barrio', cursive;
+}
